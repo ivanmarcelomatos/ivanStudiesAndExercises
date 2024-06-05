@@ -1,11 +1,10 @@
-const http = require('http');
+var http = require('http');
+var dt = require('./myfirstmodule');
 
-http.createServer(function(req, res) {
-  // Set the response HTTP header with HTTP status and Content type
+http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
- 
-  // Send the response body 'Hello World'
-  res.end('Hello World, Ivan Node!');
-}).listen(8080);
+  res.write("The date and time are currently: " + dt.myDateTime());
+  res.end();
+}).listen(8080); 
 
 console.log('Server running at http://localhost:8080/');
