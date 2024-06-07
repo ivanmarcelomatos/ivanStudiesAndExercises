@@ -1,18 +1,24 @@
-// Load the HTTP module
-const http = require('http');
+var nodemailer = require('nodemailer');
 
-// Define the hostname and port
-const hostname = '127.0.0.1';
-const port = 3000;
-
-// Create an HTTP server and listen to requests on the specified port and hostname
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'youremail@gmail.com',
+    pass: 'yourpassword'
+  }
 });
 
-// Start the server
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+}); 
