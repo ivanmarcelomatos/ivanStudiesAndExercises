@@ -1,18 +1,8 @@
-// Load the HTTP module
-const http = require('http');
+var fs = require('fs');
 
-// Define the hostname and port
-const hostname = '127.0.0.1';
-const port = 3000;
+var readStream = fs.createReadStream('./demofile.txt');
 
-// Create an HTTP server and listen to requests on the specified port and hostname
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
-});
-
-// Start the server
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+/*Write to the console when the file is opened:*/
+readStream.on('open', function () {
+  console.log('The file is open');
 });
