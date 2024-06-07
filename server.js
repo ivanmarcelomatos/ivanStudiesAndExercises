@@ -1,18 +1,16 @@
-// Load the HTTP module
-const http = require('http');
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 
-// Define the hostname and port
-const hostname = '127.0.0.1';
-const port = 3000;
+//Create an event handler:
+var myEventHandler = function () {
+  console.log('I hear a scream!');
+}
 
-// Create an HTTP server and listen to requests on the specified port and hostname
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
-});
+//Assign the eventhandler to an event:
+eventEmitter.on('scream', myEventHandler);
 
-// Start the server
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+//Fire the 'scream' event:
+eventEmitter.emit('scream');
+
+              
+
