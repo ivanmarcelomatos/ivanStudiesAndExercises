@@ -4,13 +4,13 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "",
   password: "",
-  database: "mydb"
+  database: ""
 });
 
 con.connect(function(err) {
   if (err) throw err;
   con.query("SELECT name, address FROM customers", function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
+    console.log(fields);
   });
 });
