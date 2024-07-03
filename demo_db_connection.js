@@ -9,11 +9,12 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
+  var name = 'Amy';
   var adr = 'Mountain 21';
-  //Escape the address value:
-  var sql = 'SELECT * FROM customers WHERE address = ?';
+  //Escape the name and the address values:
+  var sql = 'SELECT * FROM customers WHERE name = ? OR address = ?';
   //Send an array with value(s) to replace the escaped values:
-  con.query(sql, [adr], function (err, result) {
+  con.query(sql, [name, adr], function (err, result) {
     if (err) throw err;
     console.log(result);
   });
