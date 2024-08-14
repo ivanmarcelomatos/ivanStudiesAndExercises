@@ -1,0 +1,33 @@
+//const { MongoClient } = require('mongodb'); 
+const mongodb = require('mongodb').MongoClient;
+
+require('dotenv').config();
+
+async function run() {
+    try {
+        console.log('Trying to connect to mongoDB...');
+        const client = await mongodb.connect(process.env.DB_CONNECTION_STRING_URL);
+
+        console.log('Connected to database');
+        
+        const dbo = client.db('ivanBancoTeste');
+
+        const obj = { 
+            firstNome: "Ivan", 
+            lastName: "Matos",
+            birthday: "1983-01-31",
+            bloodType: "O+" 
+        };
+
+        const colecao = "users";
+
+        const resultado = await dbo.collection(colecao).insertOne(obj);  
+        console.log("1 novo usurário inserido", resultado.insertedId);
+        
+        await client.close();  
+    } catch (error) {
+        console.error('Erro durante a operação:', error);
+    }
+}
+
+run();  
