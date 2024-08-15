@@ -10,14 +10,11 @@ async function run() {
 
         console.log('Connected to database');
         
-        const dbo = client.db('ivanBancoTeste');
+        const dbo = client.db('sample_mflix');
 
         
         //const resultado = await dbo.collection('inventory').find({});
-        const cursor = dbo.collection('inventory').find({
-            status: 'A',
-            $or: [{ qty: { $lt: 30 } }, { item: { $regex: '^p' } }]
-          });
+        const cursor = dbo.collection('movies').find({ year: 1924 });
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
