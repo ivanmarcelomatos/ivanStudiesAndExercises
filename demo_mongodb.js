@@ -14,7 +14,9 @@ async function run() {
 
         
         //const resultado = await dbo.collection('inventory').find({});
-        const cursor = dbo.collection('inventory').find({ status: 'D' });
+        const cursor = dbo.collection('inventory').find({
+            status: { $in: ['A', 'D'] }
+          });
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
