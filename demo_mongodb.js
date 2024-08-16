@@ -15,9 +15,7 @@ async function run() {
         
     
         const cursor = dbo.collection('inventory').find({
-            'size.h': { $lt: 15 },
-            'size.uom': 'in',
-            status: 'D'
+            size: { h: 14, w: 21, uom: 'cm' }
           });
         const resultado = await cursor.toArray();
 
