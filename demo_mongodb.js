@@ -15,7 +15,7 @@ async function run() {
        
    
         const cursor = dbo.collection('inventory2').find({
-            tags: ['red', 'blank']
+            tags: { $all: ['red', 'blank'] }
           });
         const resultado = await cursor.toArray();
 
