@@ -15,7 +15,7 @@ async function run() {
        
    
         const cursor = dbo.collection('movies').find(
-            { "countries.0" : { $ne:  "USA"} }
+            { genres: { $size: 3 } }
         );
         const resultado = await cursor.toArray();
 
