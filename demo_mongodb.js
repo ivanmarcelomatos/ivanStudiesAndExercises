@@ -15,7 +15,9 @@ async function run() {
        
    
         const cursor = dbo.collection('movies').find(
-            { cast: { $regex: "Olsen$", $eq: "Mary-Kate Olsen" } }
+            { languages: 
+                { $elemMatch: { $ne: null, $ne: "English" } } 
+            }
         );
         const resultado = await cursor.toArray();
 
