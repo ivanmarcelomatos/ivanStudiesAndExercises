@@ -14,9 +14,7 @@ async function run() {
 
        
    
-        const cursor = dbo.collection('movies').find({ 
-            genres: { $all: ["Action", "Comedy"] } 
-        });
+        const cursor = dbo.collection('movies').find({ genres: "Short" });
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
