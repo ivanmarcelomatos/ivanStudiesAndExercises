@@ -15,7 +15,7 @@ async function run() {
        
    
         const cursor = dbo.collection('inventory2').find({
-            dim_cm: { $gt: 15, $lt: 20 }
+            dim_cm: { $elemMatch: { $gt: 22, $lt: 30 } }
           });
         const resultado = await cursor.toArray();
 
