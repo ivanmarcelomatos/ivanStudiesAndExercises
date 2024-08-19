@@ -15,7 +15,8 @@ async function run() {
        
    
         const cursor = dbo.collection('inventory3').find({
-            'instock.qty': { $gt: 10, $lte: 20 }
+            'instock.qty': 5,
+            'instock.warehouse': 'A'
           });
         const resultado = await cursor.toArray();
 
