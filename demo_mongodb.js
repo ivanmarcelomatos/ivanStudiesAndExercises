@@ -14,9 +14,9 @@ async function run() {
 
        
    
-        const cursor = dbo.collection('inventory3').find(
-            { instock: { warehouse: 'A', qty: 5 } }
-        );
+        const cursor = dbo.collection('inventory3').find({
+            instock: { qty: 5, warehouse: 'A' }
+          });
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
