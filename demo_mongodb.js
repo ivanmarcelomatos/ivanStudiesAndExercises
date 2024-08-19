@@ -10,12 +10,12 @@ async function run() {
 
         console.log('Connected to database');
        
-        const dbo = client.db('sample_mflix');
+        const dbo = client.db('ivanBancoTeste');
 
        
    
-        const cursor = dbo.collection('movies').find(
-            { genres: { $size: 3 } }
+        const cursor = dbo.collection('inventory3').find(
+            { instock: { warehouse: 'A', qty: 5 } }
         );
         const resultado = await cursor.toArray();
 
