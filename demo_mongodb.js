@@ -17,7 +17,7 @@ async function run() {
         const cursor = dbo.collection('inventory4').find({
             status: 'A'
           })
-          .project({ item: 1, status: 1 });
+          .project({ item: 1, status: 1, _id: 0 });
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
