@@ -14,10 +14,10 @@ async function run() {
 
        
    
-        const cursor = dbo.collection('inventory4').find({
-            status: 'A'
-          })
-          .project({ item: 1, status: 1, instock: { $slice: -1 } });
+        const insertedItems = await dbo.collection('inventory5').insertMany([{ _id: 1, item: null }, { _id: 2 }]);
+
+        const cursor = dbo.collection('inventory5').find({ _id: { $in: [1, 2] } });
+        
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
