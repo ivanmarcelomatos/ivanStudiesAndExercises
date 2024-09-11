@@ -15,9 +15,9 @@ async function run() {
        
 
 
-        const cursor = dbo.collection('inventory5').find({
-            item: null
-          });
+        const cursor = dbo.collection('inventory5').find({ 
+            item: { $ne : null }
+        });
         
         const resultado = await cursor.toArray();
 
