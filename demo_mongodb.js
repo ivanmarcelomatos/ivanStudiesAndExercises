@@ -13,10 +13,11 @@ async function run() {
         const dbo = client.db('ivanBancoTeste');
 
        
-   
-        const insertedItems = await dbo.collection('inventory5').insertMany([{ _id: 1, item: null }, { _id: 2 }]);
 
-        const cursor = dbo.collection('inventory5').find({ _id: { $in: [1, 2] } });
+
+        const cursor = dbo.collection('inventory5').find({
+            item: null
+          });
         
         const resultado = await cursor.toArray();
 
