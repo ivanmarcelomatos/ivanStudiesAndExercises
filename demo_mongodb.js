@@ -14,10 +14,16 @@ async function run() {
 
        
 
+        await dbo.collection('inventory6').updateOne(
+            { item: 'paper' },
+            {
+              $set: { 'size.uom': 'cm', status: 'P' },
+              $currentDate: { lastModified: true }
+            }
+          );
 
-        const cursor = dbo.collection('inventory5').find({
-            item: { $exists: false }
-          });
+
+        const cursor = dbo.collection('inventory6').find({ item: 'paper' });
         
         const resultado = await cursor.toArray();
 
