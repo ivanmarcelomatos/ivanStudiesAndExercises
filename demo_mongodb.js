@@ -12,24 +12,17 @@ async function run() {
        
         const dbo = client.db('ivanBancoTeste');
 
-       
-
-        await dbo.collection('inventory6').replaceOne(
-            { item: 'paper' },
-            {
-              item: 'paper',
-              instock: [
-                { warehouse: 'A', qty: 60 },
-                { warehouse: 'B', qty: 40 }
-              ]
-            }
-          );
 
 
-        const cursor = dbo.collection('inventory6').find(
-            { item: 'paper'}
+        await dbo.collection('students').updateOne( 
+            { _id: 3 }, 
+            [ 
+                { $set: { "test3": 98, modified: "$$NOW"} } 
+            ] 
         );
-        
+
+        const cursor = dbo.collection('students').find();
+
         const resultado = await cursor.toArray();
 
         console.log("Result: ", resultado);
