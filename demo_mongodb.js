@@ -14,13 +14,16 @@ async function run() {
 
 
 
-        await dbo.collection('students').updateOne( 
-            { _id: 3 }, 
-            [ 
-                { $set: { "test3": 98, modified: "$$NOW"} } 
-            ] 
-        );
+        await dbo.collection('students').updateMany( {},
+            [
+              { $replaceRoot: { newRoot:
+                 { $mergeObjects: [ { quiz1: 0, quiz2: 0, test1: 0, test2: 0 }, "$$ROOT" ] }
+              } },
+              { $set: { modified: "$$NOW"}  }
+            ]
+          )
 
+          
         const cursor = dbo.collection('students').find();
 
         const resultado = await cursor.toArray();
