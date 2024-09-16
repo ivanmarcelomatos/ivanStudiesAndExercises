@@ -14,24 +14,12 @@ async function run() {
 
 
 
-        await dbo.collection('students3').updateMany(
-            { },
-            [
-              { $set: { average : { $trunc: [ { $avg: "$tests" }, 0 ] }, modified: "$$NOW" } },
-              { $set: { grade: { $switch: {
-                                    branches: [
-                                        { case: { $gte: [ "$average", 90 ] }, then: "A" },
-                                        { case: { $gte: [ "$average", 80 ] }, then: "B" },
-                                        { case: { $gte: [ "$average", 70 ] }, then: "C" },
-                                        { case: { $gte: [ "$average", 60 ] }, then: "D" }
-                                    ],
-                                    default: "F"
-              } } } }
-            ]
-         )
+        await dbo.collection('students4').updateOne( { _id: 2 },
+            [ { $set: { quizzes: { $concatArrays: [ "$quizzes", [ 8, 6 ]  ] } } } ]
+          )
 
 
-        const cursor = dbo.collection('students3').find();
+        const cursor = dbo.collection('students4').find();
 
         const resultado = await cursor.toArray();
 
