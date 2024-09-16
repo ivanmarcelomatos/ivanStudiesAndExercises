@@ -14,20 +14,22 @@ async function run() {
 
 
 
-        await dbo.collection('temperatures').updateMany( { },
+        await dbo.collection('cakeFlavors').updateOne(
+            {
+               $expr: { $eq: [ "$flavor", "$$targetFlavor" ] }
+            },
             [
-              { $addFields: { "tempsF": {
-                    $map: {
-                       input: "$tempsC",
-                       as: "celsius",
-                       in: { $add: [ { $multiply: ["$$celsius", 9/5 ] }, 32 ] }
-                    }
-              } } }
-            ]
-          )
+               {
+                  $set: { flavor: "$$newFlavor" }
+               }
+            ],
+            {
+               let: { targetFlavor: "cherry", newFlavor: "orange" }
+            }
+         );
 
 
-        const cursor = dbo.collection('temperatures').find();
+        const cursor = dbo.collection('cakeFlavors').find();
 
         const resultado = await cursor.toArray();
 
