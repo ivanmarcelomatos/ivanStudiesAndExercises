@@ -14,17 +14,24 @@ async function run() {
 
 
 
-        await dbo.collection('students').updateMany( {},
+        await dbo.collection('students3').updateMany(
+            { },
             [
-              { $replaceRoot: { newRoot:
-                 { $mergeObjects: [ { quiz1: 0, quiz2: 0, test1: 0, test2: 0 }, "$$ROOT" ] }
-              } },
-              { $set: { modified: "$$NOW"}  }
+              { $set: { average : { $trunc: [ { $avg: "$tests" }, 0 ] }, modified: "$$NOW" } },
+              { $set: { grade: { $switch: {
+                                    branches: [
+                                        { case: { $gte: [ "$average", 90 ] }, then: "A" },
+                                        { case: { $gte: [ "$average", 80 ] }, then: "B" },
+                                        { case: { $gte: [ "$average", 70 ] }, then: "C" },
+                                        { case: { $gte: [ "$average", 60 ] }, then: "D" }
+                                    ],
+                                    default: "F"
+              } } } }
             ]
-          )
+         )
 
-          
-        const cursor = dbo.collection('students').find();
+
+        const cursor = dbo.collection('students3').find();
 
         const resultado = await cursor.toArray();
 
