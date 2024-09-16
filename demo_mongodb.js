@@ -14,12 +14,20 @@ async function run() {
 
 
 
-        await dbo.collection('students4').updateOne( { _id: 2 },
-            [ { $set: { quizzes: { $concatArrays: [ "$quizzes", [ 8, 6 ]  ] } } } ]
+        await dbo.collection('temperatures').updateMany( { },
+            [
+              { $addFields: { "tempsF": {
+                    $map: {
+                       input: "$tempsC",
+                       as: "celsius",
+                       in: { $add: [ { $multiply: ["$$celsius", 9/5 ] }, 32 ] }
+                    }
+              } } }
+            ]
           )
 
 
-        const cursor = dbo.collection('students4').find();
+        const cursor = dbo.collection('temperatures').find();
 
         const resultado = await cursor.toArray();
 
