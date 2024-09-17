@@ -14,7 +14,7 @@ async function run() {
 
 
 
-        await dbo.collection('inventory7').deleteMany({});
+        await dbo.collection('inventory7').deleteMany({ status: 'A' });
 
 
         const cursor = dbo.collection('inventory7').find();
