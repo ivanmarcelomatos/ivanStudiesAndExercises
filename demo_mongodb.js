@@ -14,10 +14,21 @@ async function run() {
 
 
 
-        await dbo.collection('inventory7').deleteMany({ status: 'A' });
+        await dbo.collection('pizzas').bulkWrite( [
+               { insertOne: { document: { _id: 3, type: "beef", size: "medium", price: 6 } } },
+               { insertOne: { document: { _id: 4, type: "sausage", size: "large", price: 10 } } },
+               { updateOne: {
+                  filter: { type: "cheese" },
+                  update: { $set: { price: 8 } }
+               } },
+               { deleteOne: { filter: { type: "pepperoni"} } },
+               { replaceOne: {
+                  filter: { type: "vegan" },
+                  replacement: { type: "tofu", size: "small", price: 4 }
+               } }
+            ] );
 
-
-        const cursor = dbo.collection('inventory7').find();
+        const cursor = dbo.collection('pizzas').find();
 
         const resultado = await cursor.toArray();
 
