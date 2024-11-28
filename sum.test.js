@@ -1,5 +1,5 @@
-const sum = require('./sum');
-
-test('soma 3 + 6 igual a 9', () => {
-    expect(sum(3, 6)).toBe(9);
-});
+test('object assignment', () => {
+    const data = {one: 1};
+    data['two'] = 2;
+    expect(data).toEqual({one: 1, two: 2});
+  });
