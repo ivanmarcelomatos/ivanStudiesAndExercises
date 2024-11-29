@@ -1,12 +1,7 @@
-const shoppingList = [
-  'diapers',
-  'kleenex',
-  'trash bags',
-  'paper towels',
-  'milk',
-];
+function compileAndroidCode() {
+  throw new Error('you are using the wrong JDK!');
+}
 
-test('the shopping list has milk on it', () => {
-  expect(shoppingList).toContain('milk');
-  expect(new Set(shoppingList)).toContain('milk');
+test('compiling android goes as expected', () => {
+  expect(() => compileAndroidCode()).toThrow(); // Checks that the function throws an error.
 });
