@@ -3,5 +3,5 @@ function compileAndroidCode() {
 }
 
 test('compiling android goes as expected', () => {
-  expect(() => compileAndroidCode()).toThrow(); // Checks that the function throws an error.
+  expect(() => compileAndroidCode()).toThrow(Error); //Checks that the function throws an error of type Error
 });
