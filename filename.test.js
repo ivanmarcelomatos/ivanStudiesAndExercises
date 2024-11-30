@@ -3,5 +3,5 @@ function compileAndroidCode() {
 }
 
 test('compiling android goes as expected', () => {
-  expect(() => compileAndroidCode()).toThrow(Error); //Checks that the function throws an error of type Error
+  expect(() => compileAndroidCode()).toThrow('you are using the wrong JDK!'); //Checks that the error message contains the exact string 'you are using the wrong JDK'.
 });
