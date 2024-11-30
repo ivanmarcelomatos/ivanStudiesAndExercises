@@ -3,5 +3,5 @@ function compileAndroidCode() {
 }
 
 test('compiling android goes as expected', () => {
-  expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK$/); //This test fails because it checks for the exact string 'you are using the wrong JDK' without the exclamation mark.
+  expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK!$/); //This test passes because it matches the exact error message with the exclamation mark
 });
