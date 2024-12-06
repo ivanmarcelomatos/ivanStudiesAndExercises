@@ -1,58 +1,19 @@
-// promise creation
-const myPromise = new Promise((resolve, reject) => {
-    const name = 'Matheus';
-
-    if(name === 'Matheus') {
-        resolve('user Matheus found');
-    } else {
-        reject('User Matheus was not found');
-    }
+// resolve multiple promises
+const p1 = new Promise((resolve, reject) => {
+    resolve('p1 ok!');
 });
 
-myPromise.then(data => {
+const p2 = new Promise((resolve, reject) => {
+    resolve('p2 ok!');
+});
+
+const p3 = new Promise((resolve, reject) => {
+    resolve('p3 ok!');
+});
+
+
+
+
+const resolveAll = Promise.all([p1, p2, p3]).then((data) => {
     console.log(data);
 });
-
-
-
-//then chaining
-const myPromise2 = new Promise((resolve, reject) => {
-    const name = 'Matheus';
-
-    if(name === 'Matheus') {
-        resolve('user Matheus found');
-    } else {
-        reject('User Matheus was not found');
-    }
-});
-
-myPromise2.then(data => {
-    return data.toLowerCase();
-})
-    .then((modifiedString) => {
-        console.log(modifiedString);
-    })
-
-
-
-
-
-
-
-
-// return from .catch()
-const myPromise3 = new Promise((resolve, reject) => {
-    const name = 'John';
-
-    if(name === 'Matheus') {
-        resolve('user Matheus found');
-    } else {
-        reject('User Matheus was not found');
-    }
-});
-
-myPromise3.then((data) => {
-    console.log(data);
-}).catch((error) => {
-    console.log(`An error occurred: ${error}`)
-})
