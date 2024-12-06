@@ -16,7 +16,7 @@ const p3 = new Promise((resolve, reject) => {
 
 
 
-const resolveAll = Promise.all([p1, p2, p3]).then((data) => {
+const resolveAll = Promise.race([p1, p2, p3]).then((data) => {
     console.log(data);
 });
 
