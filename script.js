@@ -1,23 +1,19 @@
-// resolve multiple promises
-const p1 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('p1 ok! Timeout!');
-    }, 2000);
-});
+//Fetch request on Github API
 
-const p2 = new Promise((resolve, reject) => {
-    resolve('p2 ok!');
-});
+const username = 'ivanmarcelomatos';
 
-const p3 = new Promise((resolve, reject) => {
-    resolve('p3 ok!');
-});
-
-
-
-
-const resolveAll = Promise.race([p1, p2, p3]).then((data) => {
-    console.log(data);
-});
-
-console.log('after .all()');
+fetch(`https://api.github.com/users/${username}`, {
+    method: 'GET',
+    headers: {
+        Accept: 'application/vnd.github.v3+json'
+    }
+})
+    .then((response) => {
+        console.log(typeof response);
+        console.log(response);
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        console.log('The name is: ' + data.name);
+    })
