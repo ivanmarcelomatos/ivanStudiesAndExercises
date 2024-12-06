@@ -2,7 +2,7 @@
 
 const username = 'ivanmarcelomatos';
 
-fetch(`https://api.github.com/users/${username}`, {
+fetch(`https://api.ERROR.github.com/users/${username}`, {
     method: 'GET',
     headers: {
         Accept: 'application/vnd.github.v3+json'
@@ -16,4 +16,7 @@ fetch(`https://api.github.com/users/${username}`, {
     .then((data) => {
         console.log(data);
         console.log('The name is: ' + data.name);
+    })
+    .catch((error) => {
+        console.log(`There was an error: ${error}`);
     })
