@@ -32,3 +32,27 @@ myPromise2.then(data => {
     .then((modifiedString) => {
         console.log(modifiedString);
     })
+
+
+
+
+
+
+
+
+// return from .catch()
+const myPromise3 = new Promise((resolve, reject) => {
+    const name = 'John';
+
+    if(name === 'Matheus') {
+        resolve('user Matheus found');
+    } else {
+        reject('User Matheus was not found');
+    }
+});
+
+myPromise3.then((data) => {
+    console.log(data);
+}).catch((error) => {
+    console.log(`An error occurred: ${error}`)
+})
