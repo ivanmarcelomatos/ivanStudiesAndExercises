@@ -12,8 +12,7 @@ function getGithubUserData() {
 
 
 
-test('the data.name is Ivan', () => {
-  return getGithubUserData().then(data => {
-    expect(data.name).toBe('Ivan');
-  });
+test('the data.name is Ivan', async () => {
+  const data = await getGithubUserData();
+  expect(data.name).toBe('Ivan');
 });
