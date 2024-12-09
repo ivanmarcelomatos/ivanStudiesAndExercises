@@ -1,7 +1,19 @@
-function compileAndroidCode() {
-  throw new Error('you are using the wrong JDK!');
-}
+const axios = require('axios');
 
-test('compiling android goes as expected', () => {
-  expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK!$/); //This test passes because it matches the exact error message with the exclamation mark
+
+function getGithubUserData() {
+  const username = 'ivanmarcelomatos';
+
+  return axios.get(`https://api.github.com/users/${username}`)
+      .then((response) => {
+          return response.data;
+      })
+};
+
+
+
+test('the data.name is Ivan', () => {
+  return getGithubUserData().then(data => {
+    expect(data.name).toBe('Ivan');
+  });
 });
