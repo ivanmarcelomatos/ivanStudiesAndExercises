@@ -13,6 +13,5 @@ function getGithubUserData() {
 
 
 test('the data.name is Ivan', async () => {
-  const data = await getGithubUserData();
-  expect(data.name).toBe('Ivan');
+  await expect(getGithubUserData()).resolves.toHaveProperty('name', 'Ivan');
 });
