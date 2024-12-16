@@ -12,7 +12,7 @@ function getGithubUserData() {
     });
 }
 
-test('the getGithubUserData() fails with an error', async () => {
+test('the getGithubUserData() fails with an error', () => {
   expect.assertions(1);
     return getGithubUserData().catch (error => expect(error.message).toMatch('Network error occurred'));
 });
