@@ -1,19 +1,30 @@
 const axios = require('axios');
 
-
-function getGithubUserData() {
+function getGithubUserData(callback) {
   const username = 'ivanmarcelomatos';
 
-  return axios.get(`https://api.github.com/users/${username}`)
-      .then((response) => {
-          return response.data;
-      })
-};
+  axios.get(`https://api.github.com/users/${username}`)
+    .then(response => {
+      callback(null, response.data);
+    })
+    .catch(error => {
+      callback(error);
+    });
+}
 
+test('the data.name is Ivan', (done) => {
+  function callback(error, data) {
+    if (error) {
+      done(error);
+      return;
+    }
+    try {
+      expect(data.name).toBe('Ivan');
+      done();
+    } catch (error) {
+      done(error);
+    }
+  }
 
-
-test('the data.name is Ivan', () => {
-  return getGithubUserData().then(data => {
-    expect(data.name).toBe('Ivan');
-  });
+  getGithubUserData(callback);
 });
