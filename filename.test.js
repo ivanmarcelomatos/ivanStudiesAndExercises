@@ -12,6 +12,6 @@ function getGithubUserData() {
     });
 }
 
-test('the getGithubUserData() fails with an error', async () => {
-  await expect(getGithubUserData()).rejects.toThrow('Network error occurred');
+test('the getGithubUserData() fails with an error', () => {
+  return expect(getGithubUserData()).rejects.toThrow('Network error occurred');
 });
